@@ -9,3 +9,5 @@ La primera funcionalidad que agregue fue la de la opción Salir, para ello selec
 la instrucción para salir del programa una vez se le de click:
 
 System.exit(0);
+
+Por ultimo agregue una caja de texto que será el área de trabajo.
