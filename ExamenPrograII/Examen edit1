@@ -1,0 +1,11 @@
+Edwar Josué Nolasco Cabrera - 20191930199
+Programación 2 - 1100
+
+
+Primero cree el proyecto en Netbeans llamado EditorTexto, cree un formulario al cual le agregue una barra de menú que contiene varias opciones: Abrir, Guardar,
+Abrir desde Internet, Buscar y reemplazar y la opción Salir.
+
+La primera funcionalidad que agregue fue la de la opción Salir, para ello seleccione dicha opción Salir, del menú y me fui al evento ActionPerformed y agregue
+la instrucción para salir del programa una vez se le de click:
+
+System.exit(0);
