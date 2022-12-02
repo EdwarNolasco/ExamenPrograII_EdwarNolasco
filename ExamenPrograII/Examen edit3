@@ -1,0 +1,23 @@
+Luego realice la opcion de guardar del menu para ello cree el metodo Guardar Fichero: 
+
+public void GuardarFichero() {
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de texto", "doc", "txt"); //Crea un filtro para especificar que sólo se trabajaran archivos de texto
+
+        JFileChooser fileChooser = new JFileChooser();              //Ventana que permite navegar por los directorios
+        fileChooser.setDialogTitle("Guardar");                      //Agrega el título al cuadro de diálogo
+        fileChooser.setApproveButtonText("Guardar");                //Cambia el texto del botón de aceptación
+        fileChooser.setFileFilter(filtro);                          //Se agrega el filtro al cuadro de diálogo
+        int seleccion = fileChooser.showOpenDialog(jTextArea1);      //En "int seleccion" se guarda la selección que hizo el usario "Abir" o "Cancelar".
+
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File fichero = fileChooser.getSelectedFile();           //Selecciona el fichero
+
+            try {
+                PrintWriter escritor = new PrintWriter(fichero);    //Se abre el fichero
+                escritor.print(jTextArea1.getText());                //Se le escribe el texto contenido en AreaTexto
+                escritor.close();                                   //Se cierra el fichero.
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex); //Toda va dentro de un Try Catch por cualquier error en la apertura y cierre del fichero.
+            }
+        }
+    }
