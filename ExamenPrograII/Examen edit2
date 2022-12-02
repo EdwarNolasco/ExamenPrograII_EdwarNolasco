@@ -1,0 +1,35 @@
+La siguiente funcionalidad que agregue fue la de la opción abrir del menú.
+Para ello, primero agregamos los import que utilizaremos en este caso:
+    import javax.swing.*;
+    import java.io.*;
+
+Después fuera del constructor declare las variables:
+      JFileChooser filechooser;
+      File archivo;
+
+
+Por último me fui al evento ActionPerformed de dicho elemento y agregue la siguiente instrucción(que permite abrir un archivo de texto en este caso):
+
+         private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // Funcionalidad para abrir un archivo de texto
+        filechooser = new JFileChooser(); //crea un nuevo objeto JfileChooser
+        int returnVal = filechooser.showOpenDialog(this); //Declara la variable para almacenar la selección del usuario.
+        
+        //condicion para cuando el usuario abre o no un archivo
+        if (returnVal == JFileChooser.APPROVE_OPTION){
+            archivo = filechooser.getSelectedFile(); //tiene almacenado el archivo que el usuario ha seleccionado
+            try{
+                //jTextArea1.setText(null); //elimina su contenido en caso sea necesario.
+                BufferedReader br = new BufferedReader(new FileReader(archivo)); //lee el archivo de texto
+                String cadena; //procesa linea por linea el archivo de texto con el bucle while mientras no sea nulo
+                while((cadena = br.readLine()) != null){
+                    jTextArea1.append(cadena + "\n");
+                }
+            }catch(IOException ex){
+                System.out.println(ex.getMessage()); //Salida estandar de error.
+            }
+        }else{
+            System.out.println("Cancelado.");
+        }
+    }   
+ 
