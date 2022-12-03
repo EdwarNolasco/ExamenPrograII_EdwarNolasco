@@ -1,0 +1,37 @@
+Luego cree la funcionalidad de la opción Buscar del menú, para ello me fui al evento ActionPerformed de dicho elemento para colocar las siguientes instrucciones:
+
+        // FUNCION BUSCAR DEL MENU EDITAR
+
+        //String textoABuscar = JOptionPane.showInputDialog(jTextArea1, "Buscar: ", "");
+        //Variable tipo String que almacena el texto que está en el AreaTexto
+        String textoInicialDeBusqueda = jTextArea1.getSelectedText();
+
+        //Sentencia que determina si AreaTexto contiene texto o está vacia
+        if (textoInicialDeBusqueda == null) {
+            textoInicialDeBusqueda = "";
+        }
+        //Muestra un Input para ingresar el texto que se buscará
+        String TextoBuscar = JOptionPane.showInputDialog(jTextArea1, "Buscar", textoInicialDeBusqueda);
+
+        //Se crea un objeto tipo Carte que sirve para seleccionar el texto de la busqueda
+        Caret seleccionado = jTextArea1.getCaret();
+
+        /*
+        Esto sirve para saber la posición del texto seleccionado. De esta forma se podrá hacer la búsqueda
+        a partir de la posición en la que encontramos el texto previamente.
+         */
+        int posicionInicial = 0;
+        if (seleccionado.getDot() != seleccionado.getMark()) {
+            posicionInicial = seleccionado.getDot(); //Hay algo seleccioando
+
+        }
+
+        //La búsqueda se realiza usando el método indexOf() que además de buscar el texto admite la posición inical de búsqueda.
+        String textoTotal = jTextArea1.getText();
+        int posicion = textoTotal.indexOf(TextoBuscar, posicionInicial);
+
+        /*Se utilizan los métodos setCaretPosition() que pone Dot y Mark en la posición inicial y el método
+         moveCaretPosition() que hace que Dot se mueva a la siguiente posición. De esa forma el texto queda seleccionado
+         */
+        jTextArea1.setCaretPosition(posicion);
+        jTextArea1.moveCaretPosition(posicion + TextoBuscar.length());
