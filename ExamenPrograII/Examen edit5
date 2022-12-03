@@ -1,0 +1,15 @@
+Luego intente realizar la funcionalidad de la opción "Abrir desde internet" pero no pude implementar de la forma correcta.
+La funcionalidad que le di a esta opción es que al tener seleccionada una URL en el area de texto y dar click en la opcion,
+nos abre automaticamente dicho sitio web, pero en nuestro navegador predeterminado.
+Para ello se coloca la siguiente instrucción(se coloca en el evento ActionPerformed de la opción "Abrir desde internet"):
+
+try{
+                Desktop.getDesktop().browse(new URI(jTextArea1.getSelectedText()));    
+        }catch(HeadlessException e){
+            System.out.println(e);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(FormEditorTexto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FormEditorTexto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }     
